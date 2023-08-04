@@ -18,8 +18,8 @@ import { NotFoundError } from "../errors/NotFoundError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
 import { LikeDislikeDB, Posts, PostDB, POST_LIKE } from "../models/Posts";
 import { USER_ROLES } from "../models/User";
-import { IdGenerator } from "../services/IdGenerator";
-import { TokenManager } from "../services/TokenManeger";
+import { IdGenerator } from "../services/idGenerator";
+import { TokenManager } from "../services/tokenManager";
 
 export class PostBusiness {
   constructor(
@@ -45,12 +45,12 @@ export class PostBusiness {
     const posts = postsWithCreatorName.map((postWithCreatorName) => {
       const post = new Posts(
         postWithCreatorName.id,
+        postWithCreatorName.creator_id,
         postWithCreatorName.content,
         postWithCreatorName.likes,
         postWithCreatorName.dislikes,
         postWithCreatorName.created_at,
         postWithCreatorName.updated_at,
-        postWithCreatorName.creator_id,
         postWithCreatorName.creator_name
       );
       return post.toBusinessModel();
@@ -76,12 +76,12 @@ export class PostBusiness {
 
     const newPost = new Posts(
       id,
+      payload.id,
       content,
       0,
       0,
       new Date().toString(),
       new Date().toString(),
-      payload.id,
       payload.name
     );
 
@@ -116,12 +116,12 @@ export class PostBusiness {
 
     const post = new Posts(
       postDBExists.id,
+      postDBExists.creator_id,
       postDBExists.content,
       postDBExists.likes,
       postDBExists.dislikes,
       postDBExists.created_at,
       postDBExists.updated_at,
-      postDBExists.creator_id,
       payload.name
     );
 
@@ -185,12 +185,12 @@ export class PostBusiness {
 
     const post = new Posts(
       postDBWithCreatorName.id,
+      postDBWithCreatorName.creator_id,
       postDBWithCreatorName.content,
       postDBWithCreatorName.likes,
       postDBWithCreatorName.dislikes,
       postDBWithCreatorName.created_at,
       postDBWithCreatorName.updated_at,
-      postDBWithCreatorName.creator_id,
       postDBWithCreatorName.creator_name
     );
 

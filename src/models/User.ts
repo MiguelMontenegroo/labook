@@ -14,7 +14,7 @@ export interface UserDB{
     name: string,
     email: string,
     password: string,
-    role: string,
+    role: USER_ROLES,
     created_at: string
 }
 export interface UserModel {
@@ -58,7 +58,7 @@ export class User{
     public setPassword(value: string): void{
         this.password = value
     }
-    public getRole(): string{
+    public getRole(): USER_ROLES{
         return this.role
     }
     public setRole(value: USER_ROLES): void{
