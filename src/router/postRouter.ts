@@ -2,8 +2,8 @@ import express from "express";
 import { PostBusiness } from "../business/PostBusiness";
 import { PostsController } from "../controller/PostsController";
 import { PostDatabase } from "../database/PostDatabase";
-import { IdGenerator } from "../services/IdGenerator";
-import { TokenManager } from "../services/TokenManeger";
+import { IdGenerator } from "../services/idGenerator";
+import { TokenManager } from "../services/tokenManager";
 
 export const postRouter = express.Router();
 

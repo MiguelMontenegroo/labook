@@ -5,9 +5,9 @@ import { BadRequestError } from "../errors/BadRequestError";
 import { ConflictError } from "../errors/ConflictError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { TokenPayload, User, USER_ROLES } from "../models/User";
-import { HashManager } from "../services/HashManeger";
-import { IdGenerator } from "../services/IdGenerator";
-import { TokenManager } from "../services/TokenManeger";
+import { HashManager } from "../services/hashManager";
+import { IdGenerator } from "../services/idGenerator";
+import { TokenManager } from "../services/tokenManager";
 
 export class UserBusiness {
   constructor(

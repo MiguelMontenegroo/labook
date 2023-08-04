@@ -2,9 +2,9 @@ import express from "express";
 import { UserBusiness } from "../business/UserBusiness";
 import { Usercontroller } from "../controller/UserController";
 import { UserDatabase } from "../database/UserDatabase";
-import { HashManager } from "../services/HashManeger";
-import { IdGenerator } from "../services/IdGenerator";
-import { TokenManager } from "../services/TokenManeger";
+import { HashManager } from "../services/hashManager";
+import { IdGenerator } from "../services/idGenerator";
+import { TokenManager } from "../services/tokenManager";
 
 export const userRouter = express.Router();
 
