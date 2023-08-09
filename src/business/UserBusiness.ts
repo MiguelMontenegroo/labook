@@ -1,10 +1,11 @@
 import { UserDatabase } from "../database/UserDatabase";
+import { GetUsersInputDTO } from "../dtos/user/getUsers.dto";
 import { LoginInputDTO, LoginOutputDTO } from "../dtos/user/login.dto";
 import { SignupInputDTO, SignupOutputDTO } from "../dtos/user/signup.dto";
 import { BadRequestError } from "../errors/BadRequestError";
 import { ConflictError } from "../errors/ConflictError";
 import { NotFoundError } from "../errors/NotFoundError";
-import { TokenPayload, User, USER_ROLES } from "../models/User";
+import { TokenPayload, User, USER_ROLES, UserModel } from "../models/User";
 import { HashManager } from "../services/hashManager";
 import { IdGenerator } from "../services/idGenerator";
 import { TokenManager } from "../services/tokenManager";
@@ -98,5 +99,22 @@ export class UserBusiness {
     };
 
     return output;
+  };
+  public getUsers = async (input: GetUsersInputDTO) => {
+    const { q } = input;
+    const usersDB = await this.userDatabase.findUsers(q);
+    const users: UserModel[] = usersDB.map(
+      (userDB) =>
+        new User (
+          userDB.id,
+          userDB.name,
+          userDB.email,
+          userDB.password,
+          userDB.role,
+          userDB.created_at
+        ).toBusinessModel()
+    );
+
+    return users;
   };
 }
